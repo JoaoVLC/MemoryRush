@@ -1,18 +1,21 @@
 function Sobre() {
   return (
     <section className="content-page">
-      <p className="eyebrow">Sobre o projeto</p>
-      <h1>Uma biblioteca digital ficticia de HQs</h1>
+      <p className="eyebrow">Sobre</p>
+      <h1>Projeto integrado</h1>
       <p>
-        O HQMania e um projeto academico criado para a disciplina Web Development:
-        Framework. A proposta desta primeira entrega e migrar a ideia de um site
-        antigo feito com HTML, CSS e JavaScript para uma aplicacao React organizada,
-        componentizada e com navegacao entre paginas.
+        Memory Rush é um projeto acadêmico desenvolvido para integrar duas
+        disciplinas: Web Development: Framework, com React, e Web Development:
+        HTML5 Canvas & Games, com p5.js.
       </p>
       <p>
-        Nesta etapa, o projeto funciona como um catalogo visual de historias em
-        quadrinhos. Ele nao possui backend, banco de dados, login real ou CRUD
-        completo, mantendo o foco na estrutura inicial do RA1.
+        A aplicação usa React para organizar páginas, rotas, componentes e layout.
+        A página do jogo renderiza um canvas controlado pelo p5.js, mantendo a
+        lógica do game separada em um arquivo próprio.
+      </p>
+      <p>
+        Esta versão não possui backend, banco de dados, autenticação ou CRUD. O foco
+        é apresentar uma aplicação funcional, organizada e pronta para demonstração.
       </p>
     </section>
   )
