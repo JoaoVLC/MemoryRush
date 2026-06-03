@@ -27,31 +27,31 @@ function Home() {
 
       <section className="section">
         <div className="section-heading">
-          <p className="eyebrow">Evolução RA2</p>
-          <h2>Agora com formulário, dificuldade e ranking</h2>
+          <p className="eyebrow">Jogo de memória</p>
+          <h2>Observe, memorize e repita a sequência</h2>
           <p>
-            A versão RA2 mantém o jogo em p5.js e adiciona interatividade com
-            React, estado, componentes com props e dados persistidos localmente.
+            Memory Rush desafia sua atenção a cada rodada. A sequência fica maior,
+            o ritmo aumenta e cada acerto deixa a partida mais intensa.
           </p>
         </div>
 
         <div className="feature-grid">
           <article className="feature-card">
-            <h3>Cadastro de jogador</h3>
+            <h3>Sequência de cores</h3>
             <p>
-              Antes de jogar, informe o nome e escolha a dificuldade da partida.
+              Observe os blocos acendendo e repita tudo na mesma ordem para pontuar.
             </p>
           </article>
           <article className="feature-card">
-            <h3>Estado e interação</h3>
+            <h3>Escolha sua dificuldade</h3>
             <p>
-              A página controla o jogador ativo, inicia o canvas e salva a pontuação final.
+              Jogue no modo fácil, médio ou difícil e teste sua memória em ritmos diferentes.
             </p>
           </article>
           <article className="feature-card">
-            <h3>Ranking local</h3>
+            <h3>Dispute o ranking</h3>
             <p>
-              As pontuações são ordenadas da maior para a menor e salvas no localStorage.
+              Tente superar sua melhor pontuação e compare seu resultado com outros jogadores.
             </p>
           </article>
         </div>
