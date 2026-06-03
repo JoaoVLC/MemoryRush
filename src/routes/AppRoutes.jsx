@@ -3,6 +3,7 @@ import Layout from '../components/Layout.jsx'
 import Home from '../pages/Home.jsx'
 import Instrucoes from '../pages/Instrucoes.jsx'
 import Jogo from '../pages/Jogo.jsx'
+import Ranking from '../pages/Ranking.jsx'
 import Sobre from '../pages/Sobre.jsx'
 
 function AppRoutes() {
@@ -13,6 +14,7 @@ function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/jogo" element={<Jogo />} />
           <Route path="/instrucoes" element={<Instrucoes />} />
+          <Route path="/ranking" element={<Ranking />} />
           <Route path="/sobre" element={<Sobre />} />
         </Route>
       </Routes>
@@ -21,4 +23,3 @@ function AppRoutes() {
 }
 
 export default AppRoutes
-//define as páginas

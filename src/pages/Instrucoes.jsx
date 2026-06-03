@@ -7,23 +7,23 @@ function Instrucoes() {
       <div className="instructions-list">
         <article>
           <span>1</span>
-          <p>Entre na página Jogo e pressione a tecla espaço para começar.</p>
+          <p>Entre na página Jogo, informe seu nome e escolha uma dificuldade.</p>
         </article>
         <article>
           <span>2</span>
-          <p>Observe a sequência de blocos coloridos que acende na tela.</p>
+          <p>Pressione a tecla espaço para começar a partida no canvas.</p>
         </article>
         <article>
           <span>3</span>
-          <p>Quando for sua vez, clique nos blocos repetindo a mesma ordem.</p>
+          <p>Observe a sequência de blocos coloridos que acende na tela.</p>
         </article>
         <article>
           <span>4</span>
-          <p>A cada rodada correta, sua pontuação aumenta e a sequência fica maior.</p>
+          <p>Quando for sua vez, clique nos blocos repetindo a mesma ordem.</p>
         </article>
         <article>
           <span>5</span>
-          <p>Se errar, o jogo termina. Pressione R para reiniciar.</p>
+          <p>Se errar, a pontuação final é salva no ranking local.</p>
         </article>
       </div>
     </section>

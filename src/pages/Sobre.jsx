@@ -14,8 +14,14 @@ function Sobre() {
         lógica do game separada em um arquivo próprio.
       </p>
       <p>
-        Esta versão não possui backend, banco de dados, autenticação ou CRUD. O foco
-        é apresentar uma aplicação funcional, organizada e pronta para demonstração.
+        Na evolução para o RA2, o projeto também inclui cadastro de jogador,
+        escolha de dificuldade, gerenciamento de estado e ranking salvo com
+        localStorage para simular um serviço de dados.
+      </p>
+      <p>
+        Esta versão não possui backend real, banco de dados, login ou autenticação.
+        O foco é apresentar uma aplicação funcional, organizada e pronta para
+        demonstração.
       </p>
     </section>
   )

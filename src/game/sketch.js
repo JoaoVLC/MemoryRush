@@ -6,8 +6,44 @@ const colors = [
   { name: 'Verde', base: '#43aa8b', active: '#80ed99' },
 ]
 
+const difficultySettings = {
+  facil: {
+    label: 'Fácil',
+    startDelay: 700,
+    flashBase: 620,
+    flashStep: 18,
+    flashMin: 260,
+    pauseBase: 260,
+    pauseStep: 8,
+    pauseMin: 150,
+  },
+  medio: {
+    label: 'Médio',
+    startDelay: 560,
+    flashBase: 500,
+    flashStep: 20,
+    flashMin: 220,
+    pauseBase: 210,
+    pauseStep: 9,
+    pauseMin: 120,
+  },
+  dificil: {
+    label: 'Difícil',
+    startDelay: 430,
+    flashBase: 420,
+    flashStep: 22,
+    flashMin: 180,
+    pauseBase: 170,
+    pauseStep: 10,
+    pauseMin: 90,
+  },
+}
+
 // Função principal do p5.js (controla todo o jogo)
-function sketch(p) {
+function sketch(p, options = {}) {
+  const settings = difficultySettings[options.dificuldade] || difficultySettings.facil
+  const onGameOver = typeof options.onGameOver === 'function' ? options.onGameOver : null
+
   // Estados do jogo
   let sequence = []        // sequência de cores
   let playerIndex = 0      // posição do jogador
@@ -45,14 +81,14 @@ function sketch(p) {
     showIndex = 0
     activeBlock = null
     gameState = 'showing' // mostrando sequência
-    nextFlashAt = p.millis() + 700
+    nextFlashAt = p.millis() + settings.startDelay
   }
 
   // Mostra a sequência na tela
   const updateSequencePreview = () => {
     const now = p.millis()
-    const flashDuration = Math.max(260, 620 - score * 18)
-    const pauseDuration = Math.max(150, 260 - score * 8)
+    const flashDuration = Math.max(settings.flashMin, settings.flashBase - score * settings.flashStep)
+    const pauseDuration = Math.max(settings.pauseMin, settings.pauseBase - score * settings.pauseStep)
 
     if (activeBlock === null && showIndex >= sequence.length) {
       gameState = 'player' // vez do jogador
@@ -99,6 +135,7 @@ function sketch(p) {
 
     if (choice !== sequence[playerIndex]) {
       gameState = 'gameover' // erro → fim do jogo
+      onGameOver?.(score)
       return
     }
 
@@ -133,6 +170,12 @@ function sketch(p) {
     p.textStyle(p.NORMAL)
     p.fill('#f9c74f')
     p.text(`Pontuação: ${score}`, p.width - 34, 34)
+
+    p.textAlign(p.LEFT, p.TOP)
+    p.textSize(14)
+    p.textStyle(p.NORMAL)
+    p.fill('#80ed99')
+    p.text(`Dificuldade: ${settings.label}`, 34, 58)
   }
 
   // Desenha os blocos do jogo

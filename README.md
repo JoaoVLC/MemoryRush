@@ -20,6 +20,25 @@ A aplicação usa React para organizar as páginas, rotas, componentes e layout 
 
 A lógica do jogo fica separada em `src/game/sketch.js`. Esse arquivo controla o canvas, as telas do jogo, os cliques do mouse, as teclas de início/reinício, a pontuação e a dificuldade progressiva.
 
+## Evolução para o RA2
+
+No RA2, o projeto evoluiu sem refazer a base do RA1. A aplicação continua usando React, rotas e p5.js, mas agora também demonstra interatividade com formulários, gerenciamento de estado e simulação de serviço.
+
+Principais recursos adicionados:
+
+- Formulário de jogador em `PlayerForm.jsx`, com validação de nome e dificuldade.
+- Estado com `useState` na página `Jogo.jsx` para controlar jogador, dificuldade e pontuação final.
+- Serviço fake em `rankingService.js`, usando `localStorage` para salvar, listar, ordenar e limpar pontuações.
+- Página `Ranking.jsx`, com listagem das pontuações salvas e botão para limpar o ranking.
+- Componente `ScoreCard.jsx`, que recebe `nome`, `pontos`, `dificuldade` e `data` por props.
+- Configuração de dificuldade no `sketch.js`, alterando a velocidade de exibição da sequência.
+
+As dificuldades disponíveis são:
+
+- Fácil: velocidade normal.
+- Médio: sequência um pouco mais rápida.
+- Difícil: sequência mais rápida.
+
 ## Tecnologias usadas
 
 - React
@@ -50,15 +69,20 @@ Depois, acesse o endereço exibido pelo Vite no terminal.
 ```text
 src/
 ├── components/
+│   ├── Layout.jsx
 │   ├── Navbar.jsx
-│   └── Layout.jsx
+│   ├── PlayerForm.jsx
+│   └── ScoreCard.jsx
 ├── pages/
 │   ├── Home.jsx
 │   ├── Jogo.jsx
 │   ├── Instrucoes.jsx
-│   └── Sobre.jsx
+│   ├── Sobre.jsx
+│   └── Ranking.jsx
 ├── routes/
 │   └── AppRoutes.jsx
+├── services/
+│   └── rankingService.js
 ├── game/
 │   └── sketch.js
 ├── App.jsx
@@ -69,12 +93,14 @@ src/
 ## Como jogar
 
 1. Acesse a página Jogo.
-2. Pressione espaço para começar.
-3. Observe a sequência de blocos coloridos.
-4. Clique nos blocos na mesma ordem apresentada.
-5. A cada acerto, a sequência aumenta e a pontuação sobe.
-6. Se errar, a tela de Game Over mostra a pontuação final.
-7. Pressione R para reiniciar.
+2. Informe o nome do jogador.
+3. Escolha a dificuldade.
+4. Clique em Salvar e iniciar.
+5. Pressione espaço para começar.
+6. Observe a sequência de blocos coloridos.
+7. Clique nos blocos na mesma ordem apresentada.
+8. Se errar, a pontuação final é salva no ranking local.
+9. Pressione R para jogar novamente com o mesmo jogador.
 
 ## O que o projeto não possui
 
@@ -82,3 +108,5 @@ src/
 - Banco de dados
 - Login ou autenticação
 - CRUD completo
+
+O ranking usa `localStorage`, então os dados ficam disponíveis no próprio navegador em que o jogo foi executado.

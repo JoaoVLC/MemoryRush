@@ -12,6 +12,7 @@ function Navbar() {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/jogo">Jogo</NavLink>
           <NavLink to="/instrucoes">Instruções</NavLink>
+          <NavLink to="/ranking">Ranking</NavLink>
           <NavLink to="/sobre">Sobre</NavLink>
         </div>
       </nav>
