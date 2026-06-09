@@ -5,11 +5,14 @@ import rankingService from '../services/rankingService.js'
 function Ranking() {
   const [scores, setScores] = useState([])
 
+  // CHAVE useEffect: executa uma vez ao abrir o Ranking para buscar os dados salvos.
   useEffect(() => {
+    // CHAVE ranking: carrega as pontuações salvas quando a página abre.
     setScores(rankingService.getScores())
   }, [])
 
   const handleClearRanking = () => {
+    // CHAVE service: a página pede ao rankingService para limpar os dados.
     rankingService.clearScores()
     setScores([])
   }
@@ -40,6 +43,7 @@ function Ranking() {
             <ScoreCard
               key={score.id}
               nome={score.nome}
+              email={score.email}
               pontos={score.pontos}
               dificuldade={score.dificuldade}
               data={score.data}

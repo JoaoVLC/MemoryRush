@@ -14,14 +14,14 @@ function Sobre() {
         lógica do game separada em um arquivo próprio.
       </p>
       <p>
-        Na evolução para o RA2, o projeto também inclui cadastro de jogador,
-        escolha de dificuldade, gerenciamento de estado e ranking salvo com
-        localStorage para simular um serviço de dados.
+        Na evolução do projeto, foram adicionados cadastro de jogador, escolha
+        de dificuldade, gerenciamento de estado, ranking, autenticação simulada,
+        rotas protegidas e consumo real de API HTTP com fetch.
       </p>
       <p>
-        Esta versão não possui backend real, banco de dados, login ou autenticação.
-        O foco é apresentar uma aplicação funcional, organizada e pronta para
-        demonstração.
+        Esta versão não possui backend próprio nem banco de dados real. A
+        persistência local usa localStorage, e a integração HTTP é demonstrada
+        com a API pública JSONPlaceholder.
       </p>
     </section>
   )

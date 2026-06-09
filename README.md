@@ -7,52 +7,129 @@
 
 ## Explicação do projeto
 
-Memory Rush é um jogo de memória desenvolvido como um projeto integrado para duas disciplinas:
+Memory Rush é um jogo de memória desenvolvido com React, Vite e p5.js. O jogador observa uma sequência de blocos coloridos e precisa repetir a mesma ordem clicando nos blocos. A cada rodada correta, a pontuação aumenta e uma nova cor é adicionada à sequência.
 
-- Web Development: Framework, usando React.
-- Web Development: HTML5 Canvas & Games, usando p5.js.
+A aplicação usa React para organizar páginas, rotas, componentes, formulários, autenticação simulada e ranking. O jogo em canvas fica separado em `src/game/sketch.js`, usando p5.js para desenho, animação e interação.
 
-O jogador observa uma sequência de blocos coloridos e precisa repetir a mesma ordem clicando nos blocos. A cada rodada correta, a pontuação aumenta e uma nova cor é adicionada à sequência.
+## Evolução RA1, RA2 e RA3
 
-## Integração React + p5.js
+### RA1
 
-A aplicação usa React para organizar as páginas, rotas, componentes e layout geral. O jogo fica na página `Jogo.jsx`, que usa `useEffect` para criar uma instância do p5.js quando a página é carregada.
+No RA1, o projeto tinha a estrutura inicial:
 
-A lógica do jogo fica separada em `src/game/sketch.js`. Esse arquivo controla o canvas, as telas do jogo, os cliques do mouse, as teclas de início/reinício, a pontuação e a dificuldade progressiva.
+- React com Vite.
+- Componentes reutilizáveis.
+- Layout com Navbar.
+- Rotas com React Router.
+- Páginas Home, Jogo, Instruções e Sobre.
+- Jogo Memory Rush integrado com p5.js.
 
-## Evolução para o RA2
+### RA2
 
-No RA2, o projeto evoluiu sem refazer a base do RA1. A aplicação continua usando React, rotas e p5.js, mas agora também demonstra interatividade com formulários, gerenciamento de estado e simulação de serviço.
+No RA2, o projeto evoluiu com:
 
-Principais recursos adicionados:
+- Formulário de jogador em `PlayerForm.jsx`.
+- Validação de nome e dificuldade.
+- Gerenciamento de estado com `useState`.
+- Ranking de pontuações.
+- `rankingService.js` usando `localStorage`.
+- Componente `ScoreCard.jsx` recebendo dados por props.
+- Callback entre p5.js e React para salvar a pontuação final.
 
-- Formulário de jogador em `PlayerForm.jsx`, com validação de nome e dificuldade.
-- Estado com `useState` na página `Jogo.jsx` para controlar jogador, dificuldade e pontuação final.
-- Serviço fake em `rankingService.js`, usando `localStorage` para salvar, listar, ordenar e limpar pontuações.
-- Página `Ranking.jsx`, com listagem das pontuações salvas e botão para limpar o ranking.
-- Componente `ScoreCard.jsx`, que recebe `nome`, `pontos`, `dificuldade` e `data` por props.
-- Configuração de dificuldade no `sketch.js`, alterando a velocidade de exibição da sequência.
+### RA3
 
-As dificuldades disponíveis são:
+No RA3, o projeto passou a incluir:
 
-- Fácil: velocidade normal.
-- Médio: sequência um pouco mais rápida.
-- Difícil: sequência mais rápida.
+- Consumo real de API HTTP usando `fetch()` em `apiService.js`.
+- Página `ApiDemo.jsx` com GET de usuários/posts e POST de feedback.
+- Autenticação simulada com `authService.js`.
+- `AuthContext.jsx` usando `useContext` para compartilhar usuário logado.
+- Rotas protegidas com `ProtectedRoute.jsx`.
+- Login, cadastro e perfil.
+- Upload de imagem de perfil com conversão para base64.
+- Persistência local com `localStorage`.
+- Página `Defesa.jsx` com exemplos de autoria, props, useState, useEffect e service.
+- Refinamento visual e responsividade para as novas telas.
+
+## API HTTP real
+
+A página `API Demo` consome a JSONPlaceholder:
+
+- `GET https://jsonplaceholder.typicode.com/users`
+- `GET https://jsonplaceholder.typicode.com/posts`
+- `POST https://jsonplaceholder.typicode.com/posts`
+
+O arquivo responsável é:
+
+```text
+src/services/apiService.js
+```
+
+Ele usa `fetch()`, `async/await` e `try/catch` para tratar erros.
+
+## Autenticação e segurança básica
+
+A autenticação é simulada com `localStorage`.
+
+Arquivos principais:
+
+- `src/services/authService.js`
+- `src/contexts/AuthContext.jsx`
+- `src/routes/ProtectedRoute.jsx`
+
+O sistema permite:
+
+- cadastrar usuário;
+- impedir e-mail duplicado;
+- fazer login;
+- criar sessão local;
+- fazer logout;
+- proteger rotas como `/jogo`, `/ranking` e `/perfil`.
+
+Observação: a senha é salva de forma simples apenas por ser um projeto acadêmico local. No próprio código há comentário indicando que, em produção, a senha deveria ser protegida com hash no backend.
+
+## Página Defesa
+
+A página `Defesa.jsx` foi criada para preparação de autoria. Ela inclui:
+
+- componente reutilizável `InfoBox`;
+- componente `Saudacao` com props;
+- validação usando `validationService.js`;
+- botão de alternar tema com `useState`;
+- exemplo de estado `estaLogado`;
+- exemplo de `useEffect`;
+- botão de mostrar/esconder conteúdo;
+- botão de ajuda.
 
 ## Tecnologias usadas
 
 - React
-- p5.js
-- JavaScript
 - Vite
 - React Router DOM
+- p5.js
+- JavaScript
 - CSS
+- localStorage
+- fetch API
 
 ## Como rodar o projeto
 
+Instale as dependências:
+
 ```bash
 npm install
+```
+
+Rode o projeto em desenvolvimento:
+
+```bash
 npm run dev
+```
+
+Gere o build de produção:
+
+```bash
+npm run build
 ```
 
 Se o PowerShell bloquear o comando `npm`, use:
@@ -60,6 +137,7 @@ Se o PowerShell bloquear o comando `npm`, use:
 ```bash
 npm.cmd install
 npm.cmd run dev
+npm.cmd run build
 ```
 
 Depois, acesse o endereço exibido pelo Vite no terminal.
@@ -72,17 +150,30 @@ src/
 │   ├── Layout.jsx
 │   ├── Navbar.jsx
 │   ├── PlayerForm.jsx
-│   └── ScoreCard.jsx
+│   ├── ScoreCard.jsx
+│   ├── InfoBox.jsx
+│   └── Saudacao.jsx
+├── contexts/
+│   └── AuthContext.jsx
 ├── pages/
 │   ├── Home.jsx
 │   ├── Jogo.jsx
+│   ├── Ranking.jsx
+│   ├── ApiDemo.jsx
+│   ├── Login.jsx
+│   ├── Cadastro.jsx
+│   ├── Perfil.jsx
+│   ├── Defesa.jsx
 │   ├── Instrucoes.jsx
-│   ├── Sobre.jsx
-│   └── Ranking.jsx
+│   └── Sobre.jsx
 ├── routes/
-│   └── AppRoutes.jsx
+│   ├── AppRoutes.jsx
+│   └── ProtectedRoute.jsx
 ├── services/
-│   └── rankingService.js
+│   ├── apiService.js
+│   ├── authService.js
+│   ├── rankingService.js
+│   └── validationService.js
 ├── game/
 │   └── sketch.js
 ├── App.jsx
@@ -92,21 +183,17 @@ src/
 
 ## Como jogar
 
-1. Acesse a página Jogo.
-2. Informe o nome do jogador.
-3. Escolha a dificuldade.
-4. Clique em Salvar e iniciar.
-5. Pressione espaço para começar.
-6. Observe a sequência de blocos coloridos.
-7. Clique nos blocos na mesma ordem apresentada.
-8. Se errar, a pontuação final é salva no ranking local.
-9. Pressione R para jogar novamente com o mesmo jogador.
+1. Crie uma conta ou faça login.
+2. Acesse a página Jogo.
+3. Informe o nome do jogador.
+4. Escolha a dificuldade.
+5. Clique em Salvar e iniciar.
+6. Pressione espaço para começar.
+7. Observe a sequência de blocos coloridos.
+8. Clique nos blocos na mesma ordem apresentada.
+9. Se errar, a pontuação final é salva no ranking.
+10. Acesse Ranking para ver as pontuações salvas.
 
-## O que o projeto não possui
+## Observações
 
-- Backend
-- Banco de dados
-- Login ou autenticação
-- CRUD completo
-
-O ranking usa `localStorage`, então os dados ficam disponíveis no próprio navegador em que o jogo foi executado.
+O projeto não possui backend próprio nem banco de dados real. A persistência local é feita com `localStorage`, e o consumo HTTP real é demonstrado com a API pública JSONPlaceholder.

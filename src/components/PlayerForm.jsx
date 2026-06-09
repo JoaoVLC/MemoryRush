@@ -6,10 +6,12 @@ const initialFormData = {
 }
 
 function PlayerForm({ onSubmit }) {
+  // CHAVE useState: formData guarda o que foi digitado e errors guarda validações.
   const [formData, setFormData] = useState(initialFormData)
   const [errors, setErrors] = useState({})
 
   const validateForm = () => {
+    // CHAVE formulário: valida nome obrigatório, mínimo de 2 caracteres e dificuldade.
     const nextErrors = {}
     const trimmedName = formData.nome.trim()
 

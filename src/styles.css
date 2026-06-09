@@ -26,7 +26,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -79,9 +80,25 @@ select {
 }
 
 .nav-links a:hover,
-.nav-links a.active {
+.nav-links a.active,
+.nav-button:hover {
   background: #f9c74f;
   color: #101624;
+}
+
+.nav-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #101624;
+  font-weight: 900;
+}
+
+.nav-user {
+  color: #f9c74f;
+  font-weight: 900;
 }
 
 .main-content {
@@ -286,7 +303,8 @@ select {
 }
 
 .form-field input,
-.form-field select {
+.form-field select,
+.form-field textarea {
   width: 100%;
   min-height: 46px;
   border: 1px solid #cfd8e8;
@@ -297,13 +315,20 @@ select {
 }
 
 .form-field input:focus,
-.form-field select:focus {
+.form-field select:focus,
+.form-field textarea:focus {
   border-color: #247ba0;
   outline: 3px solid rgba(36, 123, 160, 0.18);
 }
 
 .form-error {
   color: #b3261e;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-success {
+  color: #246b4f;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -449,6 +474,191 @@ select {
   font-size: 1.35rem;
 }
 
+.app-form,
+.profile-card,
+.data-panel,
+.defense-panel,
+.info-box {
+  border: 1px solid #dde3ef;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(16, 22, 36, 0.08);
+}
+
+.app-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 24px;
+}
+
+.app-form h2,
+.data-panel h2,
+.profile-card h2,
+.defense-panel h2 {
+  margin: 0;
+  color: #101624;
+  font-size: 1.25rem;
+}
+
+.auth-switch {
+  margin-top: 18px;
+}
+
+.auth-switch a,
+.score-card p:first-of-type {
+  color: #247ba0;
+  font-weight: 900;
+}
+
+.alert {
+  margin: 0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+
+.alert--error {
+  border: 1px solid #f2b8b5;
+  background: #fff7f7;
+  color: #b3261e;
+}
+
+.alert--success {
+  border: 1px solid #b7dfc5;
+  background: #f2fbf5;
+  color: #246b4f;
+}
+
+.alert--info {
+  border: 1px solid #b9d8e8;
+  background: #f2f9fc;
+  color: #174d66;
+}
+
+.form-grid,
+.api-grid,
+.profile-grid,
+.info-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.form-grid,
+.api-grid,
+.profile-grid,
+.info-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.api-grid,
+.profile-grid,
+.info-grid {
+  margin-top: 28px;
+}
+
+.data-panel,
+.profile-card,
+.defense-panel,
+.info-box {
+  padding: 22px;
+}
+
+.compact-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.compact-list div {
+  display: grid;
+  gap: 4px;
+  border-bottom: 1px solid #edf1f7;
+  padding-bottom: 12px;
+}
+
+.compact-list div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.compact-list strong {
+  color: #101624;
+}
+
+.compact-list span {
+  color: #4d5566;
+}
+
+.feedback-form,
+.defense-panel {
+  margin-top: 24px;
+}
+
+.profile-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.avatar-preview {
+  display: grid;
+  width: 112px;
+  height: 112px;
+  place-items: center;
+  overflow: hidden;
+  border: 4px solid #f9c74f;
+  border-radius: 50%;
+  background: #101624;
+  color: #f9c74f;
+  font-size: 2.4rem;
+  font-weight: 900;
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.best-score {
+  color: #247ba0;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  line-height: 1;
+}
+
+.info-box h3 {
+  margin: 0 0 8px;
+  color: #101624;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.inline-feedback {
+  margin-top: 14px;
+  font-weight: 900;
+}
+
+.defense-page--dark {
+  border-radius: 8px;
+  padding-inline: 20px;
+  background: #101624;
+}
+
+.defense-page--dark h1,
+.defense-page--dark .eyebrow {
+  color: #f9c74f;
+}
+
+.defense-page--dark > p {
+  color: #ffffff;
+}
+
 .footer {
   margin-top: auto;
   padding: 22px 16px;
@@ -472,6 +682,13 @@ select {
   .feature-grid {
     grid-template-columns: 1fr;
   }
+
+  .form-grid,
+  .api-grid,
+  .profile-grid,
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -481,6 +698,12 @@ select {
 
   .nav-links a {
     flex: 1 1 calc(50% - 10px);
+    text-align: center;
+  }
+
+  .nav-button,
+  .nav-user {
+    width: 100%;
     text-align: center;
   }
 
@@ -521,5 +744,17 @@ select {
 
   .ranking-actions {
     justify-content: stretch;
+  }
+
+  .app-form,
+  .profile-card,
+  .data-panel,
+  .defense-panel,
+  .info-box {
+    padding: 18px;
+  }
+
+  .button-row .button {
+    width: 100%;
   }
 }
