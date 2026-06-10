@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext.jsx'
 
 function Home() {
+  const { isLoggedIn } = useAuth()
+
   return (
     <>
       <section className="hero">
@@ -11,17 +14,31 @@ function Home() {
             blocos coloridos, cadastra seu jogador e tenta entrar no ranking.
           </p>
 
-          <div className="hero__actions">
-            <Link className="button button--primary" to="/jogo">
-              Jogar agora
-            </Link>
-            <Link className="button button--secondary" to="/ranking">
-              Ver ranking
-            </Link>
-            <Link className="button button--secondary" to="/instrucoes">
-              Como jogar
-            </Link>
-          </div>
+          {isLoggedIn ? (
+            <div className="hero__actions">
+              <Link className="button button--primary" to="/jogo">
+                Jogar agora
+              </Link>
+              <Link className="button button--secondary" to="/ranking">
+                Ver ranking
+              </Link>
+              <Link className="button button--secondary" to="/central-de-desafios">
+                Central de Desafios
+              </Link>
+            </div>
+          ) : (
+            <div className="hero__actions">
+              <Link className="button button--primary" to="/login">
+                Entrar
+              </Link>
+              <Link className="button button--secondary" to="/cadastro">
+                Criar conta
+              </Link>
+              <Link className="button button--secondary" to="/sobre">
+                Sobre o jogo
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

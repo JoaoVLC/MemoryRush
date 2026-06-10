@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from '../components/Layout.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
-import ApiDemo from '../pages/ApiDemo.jsx'
 import Cadastro from '../pages/Cadastro.jsx'
-import Defesa from '../pages/Defesa.jsx'
+import CentralDesafios from '../pages/CentralDesafios.jsx'
 import Home from '../pages/Home.jsx'
 import Instrucoes from '../pages/Instrucoes.jsx'
 import Jogo from '../pages/Jogo.jsx'
@@ -36,7 +35,14 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
-          <Route path="/api-demo" element={<ApiDemo />} />
+          <Route
+            path="/central-de-desafios"
+            element={
+              <ProtectedRoute>
+                <CentralDesafios />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route
@@ -47,7 +53,6 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
-          <Route path="/defesa" element={<Defesa />} />
           <Route path="/sobre" element={<Sobre />} />
         </Route>
       </Routes>

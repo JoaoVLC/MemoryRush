@@ -41,19 +41,19 @@ No RA2, o projeto evoluiu com:
 No RA3, o projeto passou a incluir:
 
 - Consumo real de API HTTP usando `fetch()` em `apiService.js`.
-- Página `ApiDemo.jsx` com GET de usuários/posts e POST de feedback.
+- Página `CentralDesafios.jsx` com GET de jogadores/eventos e POST de sugestão.
 - Autenticação simulada com `authService.js`.
 - `AuthContext.jsx` usando `useContext` para compartilhar usuário logado.
 - Rotas protegidas com `ProtectedRoute.jsx`.
 - Login, cadastro e perfil.
 - Upload de imagem de perfil com conversão para base64.
 - Persistência local com `localStorage`.
-- Página `Defesa.jsx` com exemplos de autoria, props, useState, useEffect e service.
+- Perfil com ferramentas internas para demonstrar props, useState, useEffect e service.
 - Refinamento visual e responsividade para as novas telas.
 
 ## API HTTP real
 
-A página `API Demo` consome a JSONPlaceholder:
+A página `Central de Desafios` consome a JSONPlaceholder:
 
 - `GET https://jsonplaceholder.typicode.com/users`
 - `GET https://jsonplaceholder.typicode.com/posts`
@@ -88,9 +88,9 @@ O sistema permite:
 
 Observação: a senha é salva de forma simples apenas por ser um projeto acadêmico local. No próprio código há comentário indicando que, em produção, a senha deveria ser protegida com hash no backend.
 
-## Página Defesa
+## Perfil e ferramentas
 
-A página `Defesa.jsx` foi criada para preparação de autoria. Ela inclui:
+A página `Perfil.jsx` concentra dados do jogador, estatísticas, configurações e ferramentas. Ela inclui:
 
 - componente reutilizável `InfoBox`;
 - componente `Saudacao` com props;
@@ -159,11 +159,10 @@ src/
 │   ├── Home.jsx
 │   ├── Jogo.jsx
 │   ├── Ranking.jsx
-│   ├── ApiDemo.jsx
+│   ├── CentralDesafios.jsx
 │   ├── Login.jsx
 │   ├── Cadastro.jsx
 │   ├── Perfil.jsx
-│   ├── Defesa.jsx
 │   ├── Instrucoes.jsx
 │   └── Sobre.jsx
 ├── routes/

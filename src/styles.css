@@ -477,7 +477,7 @@ textarea {
 .app-form,
 .profile-card,
 .data-panel,
-.defense-panel,
+.tools-card,
 .info-box {
   border: 1px solid #dde3ef;
   border-radius: 8px;
@@ -495,7 +495,7 @@ textarea {
 .app-form h2,
 .data-panel h2,
 .profile-card h2,
-.defense-panel h2 {
+.tools-card h2 {
   margin: 0;
   color: #101624;
   font-size: 1.25rem;
@@ -559,7 +559,7 @@ textarea {
 
 .data-panel,
 .profile-card,
-.defense-panel,
+.tools-card,
 .info-box {
   padding: 22px;
 }
@@ -591,7 +591,7 @@ textarea {
 }
 
 .feedback-form,
-.defense-panel {
+.tools-card {
   margin-top: 24px;
 }
 
@@ -644,19 +644,46 @@ textarea {
   font-weight: 900;
 }
 
-.defense-page--dark {
+.profile-page--dark {
   border-radius: 8px;
   padding-inline: 20px;
   background: #101624;
 }
 
-.defense-page--dark h1,
-.defense-page--dark .eyebrow {
+.profile-page--dark h1,
+.profile-page--dark .eyebrow {
   color: #f9c74f;
 }
 
-.defense-page--dark > p {
+.profile-page--dark > p {
   color: #ffffff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stats-grid div {
+  border-radius: 8px;
+  padding: 14px;
+  background: #f2f9fc;
+}
+
+.stats-grid strong,
+.stats-grid span {
+  display: block;
+}
+
+.stats-grid strong {
+  color: #247ba0;
+  font-size: 1.6rem;
+}
+
+.stats-grid span {
+  color: #4d5566;
+  font-weight: 800;
 }
 
 .footer {
@@ -686,7 +713,8 @@ textarea {
   .form-grid,
   .api-grid,
   .profile-grid,
-  .info-grid {
+  .info-grid,
+  .stats-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -749,7 +777,7 @@ textarea {
   .app-form,
   .profile-card,
   .data-panel,
-  .defense-panel,
+  .tools-card,
   .info-box {
     padding: 18px;
   }
