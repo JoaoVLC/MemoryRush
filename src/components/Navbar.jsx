@@ -19,12 +19,14 @@ function Navbar() {
 
         <div className="nav-links">
           <NavLink to="/">Home</NavLink>
+          <NavLink to="/lista">Lista</NavLink>
           {isLoggedIn ? (
             <>
               <NavLink to="/jogo">Jogo</NavLink>
               <NavLink to="/ranking">Ranking</NavLink>
               <NavLink to="/perfil">Perfil</NavLink>
               <NavLink to="/sobre">Sobre</NavLink>
+              <NavLink to="/contato">Contato</NavLink>
               <button className="nav-button" type="button" onClick={handleLogout}>
                 Sair
               </button>
@@ -32,6 +34,7 @@ function Navbar() {
           ) : (
             <>
               <NavLink to="/sobre">Sobre</NavLink>
+              <NavLink to="/contato">Contato</NavLink>
               <NavLink to="/login">Login</NavLink>
             </>
           )}

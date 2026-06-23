@@ -10,6 +10,8 @@ function Perfil() {
   const { currentUser, logout, updateAvatar } = useAuth()
   const [imageError, setImageError] = useState('')
   const [imageSuccess, setImageSuccess] = useState('')
+  const [pendingAvatar, setPendingAvatar] = useState('')
+  const [pendingAvatarName, setPendingAvatarName] = useState('')
   const [codigoTeste, setCodigoTeste] = useState('')
   const [codigoErro, setCodigoErro] = useState('')
   const [temaEscuro, setTemaEscuro] = useState(false)
@@ -33,6 +35,7 @@ function Perfil() {
   const bestScore = userScores[0] || null
   const totalPoints = userScores.reduce((total, score) => total + score.pontos, 0)
   const averageScore = userScores.length > 0 ? Math.round(totalPoints / userScores.length) : 0
+  const avatarPreview = pendingAvatar || currentUser?.avatar
 
   const handleLogout = () => {
     logout()
@@ -45,19 +48,23 @@ function Perfil() {
     setImageSuccess('')
 
     if (!file) {
+      setPendingAvatar('')
+      setPendingAvatarName('')
       return
     }
 
     if (!file.type.startsWith('image/')) {
       setImageError('Selecione apenas arquivos de imagem.')
+      setPendingAvatar('')
+      setPendingAvatarName('')
       return
     }
 
     const reader = new FileReader()
 
     reader.onload = () => {
-      updateAvatar(reader.result)
-      setImageSuccess('Imagem de perfil atualizada.')
+      setPendingAvatar(reader.result)
+      setPendingAvatarName(file.name)
     }
 
     reader.onerror = () => {
@@ -65,6 +72,22 @@ function Perfil() {
     }
 
     reader.readAsDataURL(file)
+  }
+
+  const handleSaveImage = (event) => {
+    event.preventDefault()
+    setImageError('')
+    setImageSuccess('')
+
+    if (!pendingAvatar) {
+      setImageError('Selecione uma imagem antes de salvar.')
+      return
+    }
+
+    updateAvatar(pendingAvatar)
+    setPendingAvatar('')
+    setPendingAvatarName('')
+    setImageSuccess('Imagem de perfil salva com sucesso.')
   }
 
   const handleValidateCode = () => {
@@ -90,8 +113,8 @@ function Perfil() {
         <article className="profile-card">
           <h2>Dados do usuário</h2>
           <div className="avatar-preview">
-            {currentUser?.avatar ? (
-              <img src={currentUser.avatar} alt={`Foto de ${currentUser.nome}`} />
+            {avatarPreview ? (
+              <img src={avatarPreview} alt={`Foto de ${currentUser.nome}`} />
             ) : (
               <span>{currentUser?.nome?.charAt(0) || 'M'}</span>
             )}
@@ -99,13 +122,23 @@ function Perfil() {
 
           <Saudacao nome={currentUser?.nome} />
           <p>{currentUser?.email}</p>
+          {currentUser?.token && <p className="token-preview">Token: {currentUser.token}</p>}
 
-          <div className="form-field">
-            <label htmlFor="avatar">Imagem de perfil</label>
-            <input id="avatar" type="file" accept="image/*" onChange={handleImageChange} />
+          <form className="avatar-form" onSubmit={handleSaveImage}>
+            <div className="form-field">
+              <label htmlFor="avatar">Imagem de perfil</label>
+              <input id="avatar" type="file" accept="image/*" onChange={handleImageChange} />
+              {pendingAvatarName && (
+                <span className="form-success">Arquivo selecionado: {pendingAvatarName}</span>
+              )}
+            </div>
             {imageError && <span className="form-error">{imageError}</span>}
             {imageSuccess && <span className="form-success">{imageSuccess}</span>}
-          </div>
+
+            <button className="button button--secondary" type="submit" disabled={!pendingAvatar}>
+              Salvar imagem
+            </button>
+          </form>
 
           <button className="button button--danger" type="button" onClick={handleLogout}>
             Sair

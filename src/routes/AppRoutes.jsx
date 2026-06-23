@@ -3,9 +3,11 @@ import Layout from '../components/Layout.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import Cadastro from '../pages/Cadastro.jsx'
 import CentralDesafios from '../pages/CentralDesafios.jsx'
+import Contato from '../pages/Contato.jsx'
 import Home from '../pages/Home.jsx'
 import Instrucoes from '../pages/Instrucoes.jsx'
 import Jogo from '../pages/Jogo.jsx'
+import Lista from '../pages/Lista.jsx'
 import Login from '../pages/Login.jsx'
 import Perfil from '../pages/Perfil.jsx'
 import Ranking from '../pages/Ranking.jsx'
@@ -27,6 +29,7 @@ function AppRoutes() {
             }
           />
           <Route path="/instrucoes" element={<Instrucoes />} />
+          <Route path="/lista" element={<Lista />} />
           <Route
             path="/ranking"
             element={
@@ -45,6 +48,7 @@ function AppRoutes() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/contato" element={<Contato />} />
           <Route
             path="/perfil"
             element={

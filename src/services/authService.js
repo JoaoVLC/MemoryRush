@@ -1,5 +1,7 @@
 const USERS_KEY = 'memoryRushUsers'
 const CURRENT_USER_KEY = 'memoryRushCurrentUser'
+const TOKEN_KEY = 'memoryRushToken'
+const FAKE_TOKEN = 'fake-token-memory-rush'
 
 const readUsers = () => {
   const storedUsers = localStorage.getItem(USERS_KEY)
@@ -29,6 +31,19 @@ const createUserId = () => {
 }
 
 const normalizeEmail = (email) => email.trim().toLowerCase()
+
+const createSessionUser = (user) => ({
+  id: user.id,
+  nome: user.nome,
+  email: user.email,
+  avatar: user.avatar || '',
+  token: FAKE_TOKEN,
+})
+
+const saveSession = (user) => {
+  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user))
+  localStorage.setItem(TOKEN_KEY, FAKE_TOKEN)
+}
 
 const validateAuthFields = ({ nome, email, senha }, requireName = false) => {
   const errors = {}
@@ -84,12 +99,10 @@ export const registerUser = ({ nome, email, senha }) => {
 
   saveUsers([...users, newUser])
 
-  return {
-    id: newUser.id,
-    nome: newUser.nome,
-    email: newUser.email,
-    avatar: newUser.avatar,
-  }
+  const sessionUser = createSessionUser(newUser)
+  saveSession(sessionUser)
+
+  return sessionUser
 }
 
 export const loginUser = ({ email, senha }) => {
@@ -113,20 +126,16 @@ export const loginUser = ({ email, senha }) => {
     }
   }
 
-  const sessionUser = {
-    id: user.id,
-    nome: user.nome,
-    email: user.email,
-    avatar: user.avatar || '',
-  }
+  const sessionUser = createSessionUser(user)
 
-  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(sessionUser))
+  saveSession(sessionUser)
 
   return sessionUser
 }
 
 export const logoutUser = () => {
   localStorage.removeItem(CURRENT_USER_KEY)
+  localStorage.removeItem(TOKEN_KEY)
 }
 
 export const getCurrentUser = () => {
@@ -137,7 +146,17 @@ export const getCurrentUser = () => {
   }
 
   try {
-    return JSON.parse(storedUser)
+    const storedToken = localStorage.getItem(TOKEN_KEY)
+    const user = JSON.parse(storedUser)
+
+    if (!storedToken) {
+      return null
+    }
+
+    return {
+      ...user,
+      token: storedToken,
+    }
   } catch {
     return null
   }
@@ -169,6 +188,7 @@ export const updateProfileImage = (email, avatar) => {
     const updatedCurrentUser = {
       ...currentUser,
       avatar,
+      token: localStorage.getItem(TOKEN_KEY) || FAKE_TOKEN,
     }
 
     localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedCurrentUser))
@@ -186,3 +206,5 @@ export default {
   isAuthenticated,
   updateProfileImage,
 }
+
+export { CURRENT_USER_KEY, FAKE_TOKEN, TOKEN_KEY, USERS_KEY }

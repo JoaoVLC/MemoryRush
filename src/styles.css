@@ -621,6 +621,20 @@ textarea {
   object-fit: cover;
 }
 
+.avatar-form {
+  display: grid;
+  gap: 12px;
+}
+
+.token-preview {
+  overflow-wrap: anywhere;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f2f9fc;
+  color: #174d66;
+  font-weight: 800;
+}
+
 .best-score {
   color: #247ba0;
   font-size: clamp(2rem, 6vw, 3.4rem);

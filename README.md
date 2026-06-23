@@ -51,6 +51,31 @@ No RA3, o projeto passou a incluir:
 - Perfil com ferramentas internas para demonstrar props, useState, useEffect e service.
 - Refinamento visual e responsividade para as novas telas.
 
+## TDE 2 - Navegação e Layout de Aplicação React
+
+O projeto atende ao TDE 2 com uma estrutura de SPA usando React Router e layout reutilizável.
+
+- React Router configurado em `src/routes/AppRoutes.jsx`.
+- Layout principal em `src/components/Layout.jsx`.
+- Navbar reutilizável em `src/components/Navbar.jsx`.
+- Footer dentro do layout principal.
+- Área de conteúdo renderizada com `Outlet`.
+- Páginas principais: Home, Sobre, Lista e Contato.
+- Componentes reutilizáveis: `InfoBox`, `ScoreCard`, `Navbar`, `Layout` e `PlayerForm`.
+
+## TDE 3 - Integração com API, Upload e Segurança
+
+O projeto atende ao TDE 3 com API REST, autenticação simulada, token local e upload de imagem com preview.
+
+- API REST consumida em `src/services/apiService.js`.
+- Lista dinâmica exibida em `src/pages/CentralDesafios.jsx`.
+- Login e cadastro simulados em `src/pages/Login.jsx` e `src/pages/Cadastro.jsx`.
+- Sessão compartilhada com `AuthContext` em `src/contexts/AuthContext.jsx`.
+- Rotas protegidas com `src/routes/ProtectedRoute.jsx`.
+- Token fictício salvo em `localStorage` com a chave `memoryRushToken`.
+- Usuário logado salvo em `localStorage` com a chave `memoryRushCurrentUser`.
+- Upload de imagem com preview antes de salvar em `src/pages/Perfil.jsx`.
+
 ## API HTTP real
 
 A página `Central de Desafios` consome a JSONPlaceholder:
@@ -82,9 +107,14 @@ O sistema permite:
 - cadastrar usuário;
 - impedir e-mail duplicado;
 - fazer login;
-- criar sessão local;
+- criar sessão local com token fictício;
 - fazer logout;
 - proteger rotas como `/jogo`, `/ranking` e `/perfil`.
+
+Chaves salvas no `localStorage`:
+
+- `memoryRushCurrentUser`: dados do usuário logado.
+- `memoryRushToken`: token fictício `fake-token-memory-rush`.
 
 Observação: a senha é salva de forma simples apenas por ser um projeto acadêmico local. No próprio código há comentário indicando que, em produção, a senha deveria ser protegida com hash no backend.
 
@@ -162,8 +192,10 @@ src/
 │   ├── CentralDesafios.jsx
 │   ├── Login.jsx
 │   ├── Cadastro.jsx
+│   ├── Contato.jsx
 │   ├── Perfil.jsx
 │   ├── Instrucoes.jsx
+│   ├── Lista.jsx
 │   └── Sobre.jsx
 ├── routes/
 │   ├── AppRoutes.jsx
@@ -196,3 +228,8 @@ src/
 ## Observações
 
 O projeto não possui backend próprio nem banco de dados real. A persistência local é feita com `localStorage`, e o consumo HTTP real é demonstrado com a API pública JSONPlaceholder.
+
+## Vídeos dos TDEs
+
+- TDE 2: https://www.youtube.com/watch?v=pI8atC9Kf0c
+- TDE 3: https://www.youtube.com/watch?v=A6AxrwVTsXs

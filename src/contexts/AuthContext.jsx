@@ -10,7 +10,6 @@ export function AuthProvider({ children }) {
   const register = (userData) => {
     const user = authService.registerUser(userData)
     setCurrentUser(user)
-    localStorage.setItem('memoryRushCurrentUser', JSON.stringify(user))
     return user
   }
 
